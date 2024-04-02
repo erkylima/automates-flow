@@ -5,7 +5,7 @@ import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Posit
 import NodeAutomates from "../nodes/automates-nodes";
 import { Box, Button, Modal } from "@mui/material";
 import '../../App.css'
-function Workflow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
+function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     const getNodeId = () => `randomnode_${+new Date()}`;
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges);
@@ -90,4 +90,4 @@ function Workflow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     )
 }
 
-export default Workflow;
+export default Flow;
