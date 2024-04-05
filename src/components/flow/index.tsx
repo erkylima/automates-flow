@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEvent, useCallback, useState } from "react";
 import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant } from "reactflow";
 import NodeAutomates from "../nodes/automates-nodes";
-import { Box, Button, Modal } from "@mui/material";
+import { Box, Button, Grid, Modal } from "@mui/material";
 import '../../App.css'
+
 function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     const getNodeId = () => `randomnode_${+new Date()}`;
     const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes);
@@ -57,11 +58,11 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     };
 
     return (
-        <div style={{ width: '100vw', height: '100vh' }}>
-            <button onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
+      <Box className="flow" component="section" display="flex" width="100vw">
+            <button className="add-node" onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
             <ReactFlow
             nodes={nodes}
-            edges={edges}
+            edges={edges}              
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}    
@@ -86,7 +87,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
                 <Button onClick={handleClose}>Close Child Modal</Button>
                 </Box>
             </Modal>
-        </div>
+      </Box>
     )
 }
 
