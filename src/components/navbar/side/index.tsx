@@ -2,7 +2,8 @@ import { faCircleNodes, faGear, faKey, faQuestion } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Sidebar, Menu, MenuItem, menuClasses } from 'react-pro-sidebar';
-import { Theme, Tooltip } from '@mui/material';
+import { Box, Theme, Tooltip } from '@mui/material';
+import logo from '../../../assets/logo.png'
 
 interface Props {
   children?: React.ReactNode,
@@ -17,7 +18,7 @@ export default class MySidebar extends React.Component<Props> {
   render() {
     
     return (
-        <Sidebar collapsed={this.props.toggle} backgroundColor={this.props.theme.palette.background.default} style={{ height: '90vh', width: '50px'}}>
+        <Sidebar width='10vw' style={{height:"100vh"}} collapsed={this.props.toggle} backgroundColor={this.props.theme.palette.background.default} >
           <Menu rootStyles={{
           [`.${menuClasses.icon}`]: {
             backgroundColor: this.props.theme.palette.background.paper,
@@ -35,15 +36,18 @@ export default class MySidebar extends React.Component<Props> {
             borderRadius: '50px',
             color: this.props.theme.palette.background.paper,
           }
-        }}>           
-            <MenuItem icon={<FontAwesomeIcon icon={faCircleNodes}/>}> Workflows</MenuItem>
-            <MenuItem icon={<FontAwesomeIcon icon={faKey}/>}> Credentials</MenuItem>
-            <Tooltip title="Settings" placement="top-end">
-              <MenuItem aria-label='Settings' icon={<FontAwesomeIcon icon={faGear}/>}> Settings</MenuItem>
-            </Tooltip>
-            <MenuItem icon={<FontAwesomeIcon icon={faQuestion}/>}> Help</MenuItem>
-          </Menu>
-        </Sidebar>
+        }}>
+          <Box display="flex">
+            <img src={logo} alt="logo" width="200px" />
+          </Box>
+          <MenuItem icon={<FontAwesomeIcon icon={faCircleNodes}/>}> Workflows</MenuItem>
+          <MenuItem icon={<FontAwesomeIcon icon={faKey}/>}> Credentials</MenuItem>
+          <Tooltip title="Settings" placement="top-end">
+            <MenuItem icon={<FontAwesomeIcon icon={faGear}/>}> Settings</MenuItem>
+          </Tooltip>
+          <MenuItem icon={<FontAwesomeIcon icon={faQuestion}/>}> Help</MenuItem>
+        </Menu>
+      </Sidebar>
     )
   }
   

@@ -18,16 +18,24 @@ function App() {
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
-				<CssBaseline />	
-				<Box component="section" display="block"  style={{ height: '100%', width:"100vw" }}>
-					<Topbar setToggled={handlerFunction} toggle={toogle}/>
-				</Box>
-				<Box component="section" display="flex" style={{ height: '100%', width:"100vw" }}>
-					<MySidebar toggle={toogle} theme={theme}>
-					</MySidebar>	
-					<Suspense fallback={<CircularProgress />}>										
-						<Flow  initialNodes={listNodes()} initialEdges={listEdges()} />					
-					</Suspense>
+				<CssBaseline />					
+				<Box component="section" display="flex" height="100vh" width="100vw" >
+					<Box display="block" height="100vh" width="10vw">
+						<MySidebar toggle={toogle} theme={theme}>
+						</MySidebar>
+					</Box>
+					<button className="sidebar-collapser" onClick={() => {alert("hi")}}>Barra</button>
+
+					<Box height="100vh" width="90vw" display="block">
+						<Box height="auto">
+							<Topbar setToggled={handlerFunction} toggle={toogle} />
+						</Box>
+						<Box>
+							<Suspense fallback={<CircularProgress />}>										
+								<Flow  initialNodes={listNodes()} initialEdges={listEdges()} />					
+							</Suspense>
+						</Box>
+					</Box>
 
 				</Box>
 			</ThemeProvider>

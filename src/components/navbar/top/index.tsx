@@ -4,7 +4,6 @@ import { useTheme, Box, IconButton, InputBase } from "@mui/material";
 import { ColorModeContext, tokens } from "../../../theme";
 import { faBars, faBell, faGear, faMoon, faPerson, faSearch, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from '../../../assets/logo.png'
 
 interface Props {
   children?: React.ReactNode,
@@ -18,16 +17,8 @@ const Topbar: React.FC<Props> = (props) => {
   const colorMode = useContext(ColorModeContext);
   
   return (
-    <Box display="flex" gap="10" justifyContent="space-between" p={2}>
-      <Box display="flex">
-        <Box display="flex" gap="10" marginRight="30px">
-          <img width="140px" src={logo}></img>
-        </Box>
-        <Box display="flex">
-          <IconButton type="button" onClick={props.setToggled}>
-            <FontAwesomeIcon icon={faBars} color={theme.palette.background.paper} />
-          </IconButton>
-        </Box>
+    <Box display="flex" justifyContent="space-between" p={2}>
+      <Box display="flex">        
         <Box
           display="flex"
           bgcolor={theme.palette.mode === "dark" ? theme.palette.primary.dark : theme.palette.secondary.main}

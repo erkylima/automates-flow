@@ -2,7 +2,13 @@
 /* these are the necessary styles for React Flow, they get used by base.css and style.css */
 .flow{
   width: 100vw;
-  height: 90vh;
+  height: 89vh;
+}
+.sidebar-collapser{
+  z-index: 10;
+  position: absolute;
+  bottom: 50%;
+  left: 9vw;
 }
 .react-flow__container {
   position: absolute;

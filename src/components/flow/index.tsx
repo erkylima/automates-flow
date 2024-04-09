@@ -58,7 +58,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     };
 
     return (
-      <Box className="flow" component="section" display="flex" width="100vw">
+      <div className="flow">
             <button className="add-node" onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
             <ReactFlow
             nodes={nodes}
@@ -87,7 +87,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
                 <Button onClick={handleClose}>Close Child Modal</Button>
                 </Box>
             </Modal>
-      </Box>
+      </div>
     )
 }
 
