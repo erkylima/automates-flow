@@ -7,13 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
   children?: React.ReactNode,
-  toggle: boolean,
-  setToggled: any;
 };
 
-const Topbar: React.FC<Props> = (props) => {
+const Topbar: React.FC<Props> = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   
   return (

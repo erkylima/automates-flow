@@ -1,7 +1,7 @@
 import { Position } from "reactflow";
-import NodeAutomates from "../../components/nodes/automates-nodes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faWallet } from "@fortawesome/free-solid-svg-icons";
+import { NodeAutomates } from "../../components/types";
 
 
 export function listNodes(): NodeAutomates[]{

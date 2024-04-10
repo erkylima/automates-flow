@@ -4,12 +4,8 @@
   width: 100vw;
   height: 89vh;
 }
-.sidebar-collapser{
-  z-index: 10;
-  position: absolute;
-  bottom: 50%;
-  left: 9vw;
-}
+
+
 .react-flow__container {
   position: absolute;
   width: 100vw;

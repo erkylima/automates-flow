@@ -8,6 +8,7 @@ import logo from '../../../assets/logo.png'
 interface Props {
   children?: React.ReactNode,
   toggle: boolean,
+  setToggled: any;
   theme: Theme
 };
 export default class MySidebar extends React.Component<Props> {  
@@ -19,6 +20,8 @@ export default class MySidebar extends React.Component<Props> {
     
     return (
         <Sidebar width='10vw' style={{height:"100vh"}} collapsed={this.props.toggle} backgroundColor={this.props.theme.palette.background.default} >
+          <button className="sidebar-collapser" onClick={this.props.setToggled}>&lt;</button>
+
           <Menu rootStyles={{
           [`.${menuClasses.icon}`]: {
             backgroundColor: this.props.theme.palette.background.paper,
@@ -45,6 +48,7 @@ export default class MySidebar extends React.Component<Props> {
           <Tooltip title="Settings" placement="top-end">
             <MenuItem icon={<FontAwesomeIcon icon={faGear}/>}> Settings</MenuItem>
           </Tooltip>
+
           <MenuItem icon={<FontAwesomeIcon icon={faQuestion}/>}> Help</MenuItem>
         </Menu>
       </Sidebar>

@@ -15,20 +15,22 @@ function App() {
 	const handlerFunction = () => {
 		setToggled(!toogle)
 	}
+	
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />					
 				<Box component="section" display="flex" height="100vh" width="100vw" >
 					<Box display="block" height="100vh" width="10vw">
-						<MySidebar toggle={toogle} theme={theme}>
+						<MySidebar setToggled={handlerFunction} toggle={toogle} theme={theme}>
+
 						</MySidebar>
+
 					</Box>
-					<button className="sidebar-collapser" onClick={() => {alert("hi")}}>Barra</button>
 
 					<Box height="100vh" width="90vw" display="block">
 						<Box height="auto">
-							<Topbar setToggled={handlerFunction} toggle={toogle} />
+							<Topbar />
 						</Box>
 						<Box>
 							<Suspense fallback={<CircularProgress />}>										
