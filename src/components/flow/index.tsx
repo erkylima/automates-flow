@@ -5,6 +5,7 @@ import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Posit
 import { Box, Button, Grid, Modal } from "@mui/material";
 import '../../App.css'
 import { NodeAutomates } from "../types";
+import { Menu, Sidebar } from "react-pro-sidebar";
 
 function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     const getNodeId = () => `randomnode_${+new Date()}`;
@@ -78,39 +79,45 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     };
 
     return (
-      <div className="flow">
-            <button className="add-node" onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
-            <ReactFlow
-            nodes={nodes}
-            edges={edges}              
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onEdgeUpdate={onEdgeUpdate}
-            onEdgeUpdateStart={onEdgeUpdateStart}
-            onEdgeUpdateEnd={onEdgeUpdateEnd}
-            onConnect={onConnect}    
+      <Box display="flex">
+        <Sidebar style={{position:"absolute", right:0, bottom:0, height:"80vh", borderRadius:"30px"}} backgroundColor="#fff" hidden={false} rtl={true}>
+          <Menu>tesasdt</Menu>
+          <Menu>tesasdt</Menu>
+        </Sidebar>
+        <div className="flow">
+          <button className="add-node" onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
+          <ReactFlow
+          nodes={nodes}
+          edges={edges}              
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onEdgeUpdate={onEdgeUpdate}
+          onEdgeUpdateStart={onEdgeUpdateStart}
+          onEdgeUpdateEnd={onEdgeUpdateEnd}
+          onConnect={onConnect}    
 
-            onNodeClick={handleOpen}    
-            >
-            <Controls />
-            <MiniMap color='#413'/>
-            <Background color='#ccc' variant={BackgroundVariant.Dots} gap={12} size={1} />
-            </ReactFlow>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-            >
-                <Box sx={{ ...style, width: 600 }}>
-                <h2 id="child-modal-title">Text in a child modal</h2>
-                <p id="child-modal-description">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                </p>
-                <Button onClick={handleClose}>Close Child Modal</Button>
-                </Box>
-            </Modal>
-      </div>
+          onNodeClick={handleOpen}    
+          >
+          <Controls />
+          <MiniMap color='#413'/>
+          <Background color='#ccc' variant={BackgroundVariant.Dots} gap={12} size={1} />
+          </ReactFlow>
+          <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="child-modal-title"
+              aria-describedby="child-modal-description"
+          >
+              <Box sx={{ ...style, width: 600 }}>
+              <h2 id="child-modal-title">Text in a child modal</h2>
+              <p id="child-modal-description">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              </p>
+              <Button onClick={handleClose}>Close Child Modal</Button>
+              </Box>
+          </Modal>      
+        </div>
+      </Box>
     )
 }
 
