@@ -3,10 +3,8 @@ import { DataObject } from "./interfaces";
 
 export type NodeAutomates = {
     value: JsonObject;
-    group: string;
 } & Node;
 
-export type Group = "init" | "provider" | "output";
 
 export type CredentialInformation = string | number | boolean | DataObject | DataObject[];
  

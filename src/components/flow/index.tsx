@@ -1,10 +1,10 @@
 import { faAdd, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MouseEvent, useCallback, useState } from "react";
-import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge } from "reactflow";
-import NodeAutomates from "../nodes/automates-nodes";
+import { MouseEvent, useCallback, useRef, useState } from "react";
+import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
 import { Box, Button, Grid, Modal } from "@mui/material";
 import '../../App.css'
+import { NodeAutomates } from "../types";
 
 function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     const getNodeId = () => `randomnode_${+new Date()}`;
@@ -35,20 +35,33 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
       }, [setNodes])
     
     const onConnect = useCallback(
-        (params: Connection) => setEdges((eds) => addEdge(params, eds)),
+        (params: Connection) => setEdges((eds) => addEdge({ ...params, type: 'floating', markerEnd: { type: MarkerType.ArrowClosed,
+          width: 20,
+          height: 20,
+          color: '#FF0072',}}, eds)),
         [setEdges],
     );
 
-    const onEdgeUpdate = useCallback(
-      (oldEdge:Edge, newConnection:Connection) => setEdges((els) => updateEdge(oldEdge, newConnection, els)),
-      []
-    );
-    
-    const onDeleteEdge = (_: any, edge: Edge) => {
-        setEdges((edges) => edges.filter((edge) => edge.id !== edge.id));
-    
-        console.log(edge)
+
+    const edgeUpdateSuccessful = useRef(true);
+  
+
+  const onEdgeUpdateStart = useCallback(() => {
+    edgeUpdateSuccessful.current = false;
+  }, []);
+
+  const onEdgeUpdate = useCallback((oldEdge: Edge, newConnection:Connection) => {
+    edgeUpdateSuccessful.current = true;
+    setEdges((els) => updateEdge(oldEdge, newConnection, els));
+  }, []);
+
+  const onEdgeUpdateEnd = useCallback((_:any, edge:Edge) => {
+    if (!edgeUpdateSuccessful.current) {
+      setEdges((eds) => eds.filter((e) => e.id !== edge.id));
     }
+
+    edgeUpdateSuccessful.current = true;
+  }, []);
 
     const style = {
         position: 'absolute',
@@ -73,8 +86,10 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onEdgeUpdate={onEdgeUpdate}
+            onEdgeUpdateStart={onEdgeUpdateStart}
+            onEdgeUpdateEnd={onEdgeUpdateEnd}
             onConnect={onConnect}    
-            onEdgeClick={onDeleteEdge}
+
             onNodeClick={handleOpen}    
             >
             <Controls />
