@@ -1,7 +1,7 @@
 import { faAdd, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEvent, useCallback, useState } from "react";
-import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant } from "reactflow";
+import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge } from "reactflow";
 import NodeAutomates from "../nodes/automates-nodes";
 import { Box, Button, Grid, Modal } from "@mui/material";
 import '../../App.css'
@@ -32,11 +32,18 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
           },
         };
         setNodes((nds) => nds.concat(newNode));
-      }, [setNodes])      
+      }, [setNodes])
+    
     const onConnect = useCallback(
         (params: Connection) => setEdges((eds) => addEdge(params, eds)),
         [setEdges],
     );
+
+    const onEdgeUpdate = useCallback(
+      (oldEdge:Edge, newConnection:Connection) => setEdges((els) => updateEdge(oldEdge, newConnection, els)),
+      []
+    );
+    
     const onDeleteEdge = (_: any, edge: Edge) => {
         setEdges((edges) => edges.filter((edge) => edge.id !== edge.id));
     
@@ -65,6 +72,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
             edges={edges}              
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onEdgeUpdate={onEdgeUpdate}
             onConnect={onConnect}    
             onEdgeClick={onDeleteEdge}
             onNodeClick={handleOpen}    

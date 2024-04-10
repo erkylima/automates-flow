@@ -230,8 +230,34 @@
   .react-flow__node.selectable:focus-visible {
     outline: none;
   }
-.react-flow__node-default,
-.react-flow__node-input,
+.react-flow__node-default{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 5px 5px 5px 5px;
+  width: 80px;
+  font-size: 30pt;
+  font-style: normal;
+  color: #5100ff;
+  text-align: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #1d1c1f9a;
+  background-color: white;
+}
+.react-flow__node-input{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 10px 5px 5px 10px;
+  width: 80px;
+  font-size: 30pt;
+  font-style: normal;
+  color: #5100ff;
+  text-align: center;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #1d1c1f9a;
+  background-color: white;
+}
 .react-flow__node-output,
 .react-flow__node-group {
   padding-top: 25px;
