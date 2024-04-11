@@ -79,11 +79,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[]}){
     };
 
     return (
-      <Box display="flex">
-        <Sidebar style={{position:"absolute", right:0, bottom:0, height:"80vh", borderRadius:"30px"}} backgroundColor="#fff" hidden={false} rtl={true}>
-          <Menu>tesasdt</Menu>
-          <Menu>tesasdt</Menu>
-        </Sidebar>
+      <Box display="flex">        
         <div className="flow">
           <button className="add-node" onClick={onAdd}><FontAwesomeIcon icon={faAdd} /></button>
           <ReactFlow
