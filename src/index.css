@@ -73,6 +73,17 @@ button:focus-visible {
   }
 }
 
+.side-new-node {
+  background-color: #ad1414;  
+  position: absolute;
+  top: 8vh;
+  height: 80vh;
+  right: 0;
+  padding: 0;
+  text-align: left;
+  border: 1px solid red;
+}
+
 .add-node {
   z-index: 2;
   position: absolute;

@@ -29,12 +29,12 @@ function App() {
 					</Box>
 
 					<Box height="100vh" width="90vw" display="block">
-						<Box height="auto">
+						<Box height="8vh">
 							<Topbar />
 						</Box>
 						<Box>
 							<Suspense fallback={<CircularProgress />}>										
-								<Flow  initialNodes={listNodes()} initialEdges={listEdges()} />					
+								<Flow theme={theme} initialNodes={listNodes()} initialEdges={listEdges()} />					
 							</Suspense>
 						</Box>
 					</Box>
