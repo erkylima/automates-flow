@@ -1,8 +1,9 @@
 import { faAdd, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEvent, useCallback, useRef, useState } from "react";
-import ReactFlow, { Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
-import { Box, Button, Grid, Modal, Theme } from "@mui/material";
+import ReactFlow, {   ReactFlowProvider,
+  Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
+import { Box, Button, Collapse, Grid, Modal, Theme } from "@mui/material";
 import '../../App.css'
 import { NodeAutomates } from "../types";
 import { Menu, MenuItem, Sidebar, menuClasses } from "react-pro-sidebar";
@@ -12,19 +13,11 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
   const getNodeId = () => `randomnode_${+new Date()}`;
   const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges);
-  const [open, setOpen] = useState(false);
   const [hiddenAddSide, setHidden] = useState(true);
   const toggleHidden = () => {  
     setHidden(!hiddenAddSide);
   }
-  const handleOpen = (_: MouseEvent, node: Node) => {
-      console.log(node);
-      setOpen(true);
-    };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   const onAdd = useCallback(() => {
     const newNode = {
@@ -68,52 +61,42 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
     edgeUpdateSuccessful.current = true;
   }, []);
 
-  const style = {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      width: 400,
-      bgcolor: 'background.paper',
-      border: '2px solid #000',
-      boxShadow: 24,
-      pt: 2,
-      px: 4,
-      pb: 3,
+  const handleOpenModal = (_: MouseEvent, node: Node) => {
+    console.log(node);
+    
   };
 
   return (
-    <Box display="flex" >
-      <div className="side-new-node" hidden={hiddenAddSide} >
-        <Sidebar rootStyles={{
-          [`.${menuClasses.icon}`]: {
-            backgroundColor: props.theme.palette.background.paper,
-            borderRadius: '50px',
-            color: '#344cff',
-          },
-          [`.${menuClasses.menuItemRoot}:hover`]: {
-            backgroundColor: props.theme.palette.background.default,
-            borderRadius: '50px',
-            color: '#344cff',
-          }
-          ,
-          [`.${menuClasses.menuItemRoot}`]: {
-            backgroundColor: props.theme.palette.background.default,
-            borderRadius: '50px',
-            color: props.theme.palette.background.paper,
-          }
-        }}>
-          <Menu >
-            <MenuItem icon={<FontAwesomeIcon icon={faCircleNodes}/>} onClick={onAdd}> Add Node</MenuItem>
+    <div className="flow">
 
-          </Menu>
-        
-        </Sidebar>
-      </div>
-      <div className="flow">
-        
+        <div className="side-new-node" hidden={hiddenAddSide} >
+            <Sidebar rootStyles={{
+              [`.${menuClasses.icon}`]: {
+                backgroundColor: props.theme.palette.background.paper,
+                borderRadius: '50px',
+                color: '#344cff',
+              },
+              [`.${menuClasses.menuItemRoot}:hover`]: {
+                backgroundColor: props.theme.palette.background.default,
+                borderRadius: '50px',
+                color: '#344cff',
+              }
+              ,
+              [`.${menuClasses.menuItemRoot}`]: {
+                backgroundColor: props.theme.palette.background.default,
+                borderRadius: '50px',
+                color: props.theme.palette.background.paper,
+              }
+            }}>
+              <Menu >
+                <MenuItem icon={<FontAwesomeIcon icon={faCircleNodes}/>} onClick={onAdd}> Add Node</MenuItem>
+
+              </Menu>
+            
+            </Sidebar>
+        </div>
         <button className="add-node" onClickCapture={toggleHidden}><FontAwesomeIcon icon={faAdd} /></button>
-        <ReactFlow
+        <ReactFlow        
         nodes={nodes}
         edges={edges}              
         onNodesChange={onNodesChange}
@@ -122,29 +105,13 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
         onEdgeUpdateStart={onEdgeUpdateStart}
         onEdgeUpdateEnd={onEdgeUpdateEnd}
         onConnect={onConnect}    
-
-        onNodeClick={handleOpen}    
+        onNodeClick={handleOpenModal}    
         >
         <Controls />
         <MiniMap color='#413'/>
         <Background color='#ccc' variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="child-modal-title"
-            aria-describedby="child-modal-description"
-        >
-            <Box sx={{ ...style, width: 600 }}>
-            <h2 id="child-modal-title">Text in a child modal</h2>
-            <p id="child-modal-description">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            </p>
-            <Button onClick={handleClose}>Close Child Modal</Button>
-            </Box>
-        </Modal>      
       </div>
-    </Box>
   )
 }
 

@@ -1,17 +1,83 @@
-/* this gets exported as style.css and can be used for the default theming */
-/* these are the necessary styles for React Flow, they get used by base.css and style.css */
-.flow{
-  width: 100vw;
-  height: 89vh;
+.flow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  grid-area: content;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  z-index: 999;
+}
+
+.app {
+  display: flex;
+  width: 100vw;
+}
+
+.container_main {
+  display: grid;
+  grid-template-areas: "banners banners" "sidebar header" "sidebar content";
+  grid-auto-columns: fit-content(200px) 1fr;
+  grid-template-rows: auto fit-content(calc(var(--header-height) * 1px)) 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+.flow aside {
+  border-left: 1px solid #eee;
+  padding: 15px 10px;
+  font-size: 12px;
+  background: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .flow {
+    flex-direction: row;
+  }
+
+  .flow aside {
+    width: 20%;
+    max-width: 250px;
+    height: 200px;
+  }
+}
 
 .react-flow__container {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    grid-area: content;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 .react-flow__pane {
   z-index: 1;
