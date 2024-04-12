@@ -39,8 +39,9 @@ function App() {
 				<div className="container_main">
 					<div className="app">
 						<IconButton className="sidebar-collapser" onClick={handlerFunction}>{collapseIcon}</IconButton>
-						
+
 						<div className="sidebar" >
+
 							<MySidebar toggle={toogle} theme={theme}>
 
 							</MySidebar>

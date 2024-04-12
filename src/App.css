@@ -32,7 +32,34 @@
 .sidebar {
   grid-area: sidebar;
   height: 100%;
+  z-index: 989;
+}
+
+.sidebar-collapser{
+  grid-area: sidebar;
+  position: "absolute";
   z-index: 999;
+  height: 15px;
+  width: 15px;
+  left: 5vw;
+}
+
+.side-new-node {
+  background-color: #656565;  
+  position: absolute;
+  top: 8vh;
+  height: 80vh;
+  right: 0;
+  padding: 0;
+  text-align: left;
+  border: 1px solid rgb(75, 75, 75);
+}
+
+.add-node {
+  z-index: 2;
+  position: absolute;
+  right: 2vw;
+  top: 15vh;
 }
 
 .app {
