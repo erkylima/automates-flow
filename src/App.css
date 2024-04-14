@@ -35,6 +35,11 @@
   z-index: 989;
 }
 
+.header {
+  display: flex;
+  
+}
+
 .sidebar-collapser{
   grid-area: sidebar;
   position: "absolute";

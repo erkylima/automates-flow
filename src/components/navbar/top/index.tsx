@@ -13,8 +13,8 @@ const Topbar: React.FC<Props> = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   
-  return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+  return (    
+    <Box display="flex" width="100%" justifyContent="space-between" p={2}>
       <Box display="flex">        
         <Box
           display="flex"

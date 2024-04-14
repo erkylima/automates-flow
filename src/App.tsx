@@ -46,9 +46,9 @@ function App() {
 
 							</MySidebar>
 
-						</div>
+						</div>						
 						<div className="content">
-							<Topbar></Topbar>
+							<Topbar></Topbar>														
 							<Flow theme={theme} initialNodes={listNodes()} initialEdges={listEdges()} />							
 						</div>
 
