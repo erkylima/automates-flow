@@ -23,7 +23,7 @@ export default class MySidebar extends React.Component<Props> {
 
     return (
         <Sidebar style={{height:"100vh"}} collapsed={this.props.toggle} backgroundColor={this.props.theme.palette.background.default} >
-
+          {this.props.children}
           <Menu  style={{height:"100vh"}} rootStyles={{
           [`.${menuClasses.icon}`]: {
             backgroundColor: this.props.theme.palette.background.paper,

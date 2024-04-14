@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Flow from "./components/flow";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import Workflow from "./pages/workflow";
 
 
 function App() {		
@@ -38,19 +39,15 @@ function App() {
 				<CssBaseline />
 				<div className="container_main">
 					<div className="app">
-						<IconButton className="sidebar-collapser" onClick={handlerFunction}>{collapseIcon}</IconButton>
-
+						
 						<div className="sidebar" >
-
-							<MySidebar toggle={toogle} theme={theme}>
-
-							</MySidebar>
+							<div className="sidebar-collapser">
+								<IconButton  onClick={handlerFunction}>{collapseIcon}</IconButton>
+							</div>
+							<MySidebar toggle={toogle} theme={theme}/>
 
 						</div>						
-						<div className="content">
-							<Topbar></Topbar>														
-							<Flow theme={theme} initialNodes={listNodes()} initialEdges={listEdges()} />							
-						</div>
+						<Workflow></Workflow>
 
 					</div>
 				</div>

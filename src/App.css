@@ -31,6 +31,8 @@
 
 .sidebar {
   grid-area: sidebar;
+  display: grid;
+  position: relative;
   height: 100%;
   z-index: 989;
 }
@@ -40,13 +42,16 @@
   
 }
 
-.sidebar-collapser{
-  grid-area: sidebar;
-  position: "absolute";
+.sidebar-collapser{ 
+  height: 36px;
+  width: 36px;
   z-index: 999;
-  height: 15px;
-  width: 15px;
-  left: 5vw;
+  background-color: #555;
+  border-radius: 100%;
+  
+  position: absolute;  
+  top: calc(50vh - 15px);
+  right: -16px;
 }
 
 .side-new-node {
@@ -74,7 +79,7 @@
 
 .container_main {
   display: grid;
-  grid-template-areas: "banners banners" "sidebar header" "sidebar content";
+  grid-template-areas: "sidebar header" "sidebar content";
   grid-auto-columns: fit-content(200px) 1fr;
   grid-template-rows: auto fit-content(calc(var(--header-height) * 1px)) 1fr;
   height: 100vh;
