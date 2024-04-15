@@ -1,9 +1,8 @@
 import { faAdd, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MouseEvent, useCallback, useRef, useState } from "react";
-import ReactFlow, {   ReactFlowProvider,
-  Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
-import { Box, Button, Collapse, Grid, Modal, Theme } from "@mui/material";
+import ReactFlow, {   Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
+import { Theme } from "@mui/material";
 import '../../App.css'
 import { NodeAutomates } from "../types";
 import { Menu, MenuItem, Sidebar, menuClasses } from "react-pro-sidebar";
