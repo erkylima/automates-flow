@@ -1,11 +1,11 @@
 import { faAdd, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MouseEvent, useCallback, useRef, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import ReactFlow, {   Background, Connection, Controls, Node, Edge, MiniMap, Position, addEdge, useEdgesState, useNodesState, BackgroundVariant, updateEdge, MarkerType } from "reactflow";
 import { Theme } from "@mui/material";
 import '../../App.css'
 import { NodeAutomates } from "../types";
-import { Menu, MenuItem, Sidebar, menuClasses } from "react-pro-sidebar";
+import { Menu, MenuItem, Sidebar, menuClasses, sidebarClasses } from "react-pro-sidebar";
 import { faCircleNodes } from "@fortawesome/free-solid-svg-icons/faCircleNodes";
 
 function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , theme:Theme}){
@@ -13,10 +13,31 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
   const [nodes, setNodes, onNodesChange] = useNodesState(props.initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(props.initialEdges);
   const [hiddenAddSide, setHidden] = useState(true);
-  const toggleHidden = () => {  
-    setHidden(!hiddenAddSide);
+  
+  const openSidebar = () => {  
+    setHidden(false);
+  }
+
+  const closeSidebar = () => {
+    setHidden(true);
   }
   
+
+  const add = useRef<HTMLDivElement>(null);
+  
+  const handleOutsideClick = (e: any) => {
+    if (add.current && !add.current.contains(e.target)) {
+      closeSidebar();
+    }
+  };
+
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  });
 
   const onAdd = useCallback(() => {
     const newNode = {
@@ -38,7 +59,6 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
         color: '#FF0072',}}, eds)),
       [setEdges],
   );
-
 
   const edgeUpdateSuccessful = useRef(true);
   
@@ -68,23 +88,32 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
   return (
     <div className="flow">
 
-        <div className="side-new-node" hidden={hiddenAddSide} >
-            <Sidebar rootStyles={{
+        <div className="side-new-node" style={{background:"rgba(0,0,0,0)"}}  ref={add} hidden={hiddenAddSide} >
+            <Sidebar style={{height: "100%", background:"rgba(0,0,0,0)"}} rootStyles={{
+              
+              [`.${sidebarClasses.root}`]: {
+                background: "rgba(255,255,255,0)",
+              },
+              [`.${sidebarClasses.container}`]: {
+                background: "#cecece",
+                borderRadius: "10px",
+                padding: "10px",
+              },
               [`.${menuClasses.icon}`]: {
-                backgroundColor: props.theme.palette.background.paper,
+                backgroundColor: "rgba(255, 255, 255, 1)",
                 borderRadius: '50px',
                 color: '#344cff',
               },
               [`.${menuClasses.menuItemRoot}:hover`]: {
-                backgroundColor: props.theme.palette.background.default,
+                backgroundColor: "rgba(0, 0, 0, 1)",
                 borderRadius: '50px',
-                color: '#344cff',
+                color: 'black',
               }
               ,
               [`.${menuClasses.menuItemRoot}`]: {
                 backgroundColor: props.theme.palette.background.default,
                 borderRadius: '50px',
-                color: props.theme.palette.background.paper,
+                color: props.theme.palette.grey[100],
               }
             }}>
               <Menu >
@@ -94,7 +123,7 @@ function Flow(props: {initialNodes: NodeAutomates[], initialEdges: Edge[] , them
             
             </Sidebar>
         </div>
-        <button className="add-node" onClickCapture={toggleHidden}><FontAwesomeIcon icon={faAdd} /></button>
+        <button className="add-node" onClickCapture={openSidebar}><FontAwesomeIcon icon={faAdd} /></button>
         <ReactFlow        
         nodes={nodes}
         edges={edges}              
