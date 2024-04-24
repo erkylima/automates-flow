@@ -1,5 +1,6 @@
 import "./App.css";
 import './index.css'
+import './flow.css'
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, IconButton, ThemeProvider } from "@mui/material";
 import MySidebar from "./components/navbar/side";
