@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Workflow from "./pages/workflow";
 
-
 function App() {		
 	const [theme, colorMode] = useMode();
 	const [toogle, setToggled] = useState(false);
