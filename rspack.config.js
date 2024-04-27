@@ -62,7 +62,8 @@ module.exports = {
 		}),
 		new rspack.ProgressPlugin({}),
 		new rspack.HtmlRspackPlugin({
-			template: "./index.html"
+			template: "./index.html",
+			favicon: "./src/assets/favicon.ico"
 		}),
 		isDev ? new refreshPlugin() : null
 	].filter(Boolean)

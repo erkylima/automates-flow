@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Sidebar, Menu, MenuItem, menuClasses } from 'react-pro-sidebar';
 import { Box, IconButton, Theme, Tooltip } from '@mui/material';
-import logo from '../../../assets/logo.png'
+import logo_dark from '../../../assets/logo_dark.png'
 
 interface Props {
   children?: React.ReactNode,
@@ -42,8 +42,9 @@ export default class MySidebar extends React.Component<Props> {
             color: this.props.theme.palette.background.paper,
           }
         }}>
-          <Box display="flex">
-            <img src={logo} alt="logo" width="200px" />
+          <Box display="inline" >
+            
+            <img src={logo_dark} alt="logo" style={{marginTop:"10px"}} width="190px" />            
           </Box>
           <MenuItem icon={<FontAwesomeIcon icon={faCircleNodes}/>}> Workflows</MenuItem>
           <MenuItem icon={<FontAwesomeIcon icon={faKey}/>}> Credentials</MenuItem>
