@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Sidebar, Menu, MenuItem, menuClasses } from 'react-pro-sidebar';
 import { Box, IconButton, Theme, Tooltip } from '@mui/material';
-import logo_dark from '../../../assets/logo_dark.png'
+import logo_dark from '../../../../public/assets/logo_dark.png'
 
 interface Props {
   children?: React.ReactNode,

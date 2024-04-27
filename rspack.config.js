@@ -1,16 +1,23 @@
 const rspack = require("@rspack/core");
 const refreshPlugin = require("@rspack/plugin-react-refresh");
 const isDev = process.env.NODE_ENV === "development";
-/**
+const path = require('path');
+
+/**	
  * @type {import('@rspack/cli').Configuration}
  */
 module.exports = {
 	context: __dirname,
-	entry: {
-		main: "./src/main.tsx"
+	entry: {		
+		main: "./src/main.tsx"		
 	},
 	resolve: {
 		extensions: ["...", ".ts", ".tsx", ".jsx"]
+	},
+	output: {
+		filename: "[name].js",
+		path: path.resolve(__dirname, 'dist'),
+		clean: true
 	},
 	module: {
 		rules: [
@@ -62,8 +69,9 @@ module.exports = {
 		}),
 		new rspack.ProgressPlugin({}),
 		new rspack.HtmlRspackPlugin({
-			template: "./index.html",
-			favicon: "./src/assets/favicon.ico"
+			template: "./public/index.html",			
+			favicon: "./public/assets/favicon.ico",
+	
 		}),
 		isDev ? new refreshPlugin() : null
 	].filter(Boolean)
